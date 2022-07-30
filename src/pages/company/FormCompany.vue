@@ -1,10 +1,10 @@
 <template>
-  <q-page class="padding bg-grey-2">
-    <p class="text-h5 flex flex-center q-my-md q-pt-sm">
-      Formulário de Empresa
-    </p>
-    <q-card class="q-mx-md">
-      <q-form class="q-gutter-y-sm q-pt-xl" @submit.prevent="handleSubmit">
+  <q-page padding class="bg-grey-2">
+    <q-card class="q-mt-md">
+      <p class="text-h5 flex flex-center q-pt-md">
+        Formulário de Empresa
+      </p>
+      <q-form class="q-gutter-y-sm q-pt-md" @submit.prevent="handleSubmit">
         <div class="row q-gutter-x-md flex flex-center">
           <q-input
             outlined
@@ -46,7 +46,7 @@
             :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
           />
         </div>
-        <div class="flex flex-center q-pt-xl q-pb-sm">
+        <div class="flex flex-center q-pt-md q-pb-sm">
           <q-btn
             :label="isUpdate ? 'Atualizar' : 'Salvar'"
             color="blue"
@@ -107,12 +107,11 @@ export default defineComponent({
     const handleSubmit = async () => {
       try {
         if (isUpdate.value) {
-          console.log(form.value)
           await update(table, form.value)
-          notifySuccess('Cliente Atualizado com sucesso!')
+          notifySuccess('Empresa atualizada com sucesso!')
         } else {
           await post(table, form.value)
-          notifySuccess('Cliente cadastrado com sucesso!')
+          notifySuccess('Empresa cadastrada com sucesso!')
         }
         router.push({ name: 'list-company' })
       } catch (error) {

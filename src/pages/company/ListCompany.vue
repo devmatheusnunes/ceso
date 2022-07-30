@@ -72,13 +72,13 @@ export default defineComponent({
     const handleRemoveCompany = async (company) => {
       try {
         $q.dialog({
-          title: 'Você está deletar uma Empresa',
-          message: `Deseja realmente remover a empresa ${company.name}?`,
+          title: 'Você está deletando uma Empresa',
+          message: `Deseja realmente excluir a empresa ${company.name}?`,
           cancel: true,
           persistent: true
         }).onOk(async () => {
           await remove(table, company.id)
-          notifySuccess('Empresa removida com sucesso!')
+          notifySuccess('Empresa excluída com sucesso!')
           handleListCompany()
         })
       } catch (error) {
