@@ -11,7 +11,7 @@ import { defineComponent } from 'vue'
 import useAuthUser from 'src/composables/UseAuthUser'
 
 export default defineComponent({
-  name: 'PageMe',
+  name: 'PageHome',
 
   setup () {
     const { user } = useAuthUser()

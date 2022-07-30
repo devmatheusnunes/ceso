@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
-    "@supabase/supabase-js": "^1.29.4",
+    "@supabase/supabase-js": "^1.35.4",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "quasar": "^2.0.0",
