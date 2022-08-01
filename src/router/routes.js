@@ -21,12 +21,15 @@ const routes = [
 
       { path: 'list-collaborator', name: 'list-collaborator', component: () => import('pages/collaborator/ListCollaborator.vue') },
       { path: 'form-collaborator/:id?', name: 'form-collaborator', component: () => import('pages/collaborator/FormCollaborator.vue') },
+      { path: 'details-collaborator/:id?', name: 'details-collaborator', component: () => import('pages/collaborator/DetailsCollaborator.vue') },
 
       { path: 'list-company', name: 'list-company', component: () => import('pages/company/ListCompany.vue') },
       { path: 'form-company/:id?', name: 'form-company', component: () => import('pages/company/FormCompany.vue') },
+      { path: 'details-company/:id?', name: 'details-company', component: () => import('pages/company/DetailsCompany.vue') },
 
       { path: 'list-store', name: 'list-store', component: () => import('pages/store/ListStore.vue') },
       // { path: 'form-store/:id?', name: 'form-store', component: () => import('pages/store/FormStore.vue') },
+      // { path: 'details-store/:id?', name: 'details-store', component: () => import('pages/store/DetailsStore.vue') },
 
       { path: 'log', component: () => import('pages/Index.vue') }
     ],

@@ -1,5 +1,5 @@
 <template>
-  <q-page padding class="bg-grey-2">
+  <q-page padding>
     <q-card class="q-mt-md">
       <p class="text-h5 flex flex-center q-pt-md">
         Formulário de Empresa

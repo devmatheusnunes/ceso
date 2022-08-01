@@ -1,17 +1,22 @@
 <template>
   <q-page padding>
     <div class="row">
-      <q-table :rows="company" :columns="columns" row-key="id" class="col-12" :loading="loading">
+      <q-table :rows="company" :columns="columnsCompany" row-key="id" class="col-12" :loading="loading">
         <template v-slot:top>
           <span class="text-h6">
             Lista de Empresas
           </span>
           <q-space />
-          <q-btn label="Adicionar Empresa" color="blue" :to="{ name: 'form-company' }" />
+          <q-btn label="Adicionar Empresa" color="primary" :to="{ name: 'form-company' }" />
         </template>
         <template v-slot:body-cell-actions="props">
           <q-td :props="props" class="q-gutter-x-sm">
-            <q-btn icon="mdi-pencil-outline" color="yellow-9" dense size="sm" @click="handleEdit(props.row)">
+            <q-btn icon="mdi-eye-outline" color="info" dense size="sm" @click="handleDetails(props.row)">
+              <q-tooltip>
+                Ver Detalhes
+              </q-tooltip>
+            </q-btn>
+            <q-btn icon="mdi-pencil-outline" color="warning" dense size="sm" @click="handleEdit(props.row)">
               <q-tooltip>
                 Editar
               </q-tooltip>
@@ -29,17 +34,11 @@
 </template>
 
 <script>
-const columns = [
-  { name: 'name', align: 'left', label: 'Razão Social', field: 'name', sortable: true },
-  { name: 'cnpj', align: 'left', label: 'CPNJ', field: 'cnpj', sortable: true },
-  { name: 'ie', align: 'left', label: 'Inscrição Estadual', field: 'ie', sortable: true },
-  { name: 'csc', align: 'left', label: 'CSC', field: 'csc', sortable: true },
-  { name: 'actions', align: 'right', label: 'Ações', field: 'actions', sortable: true }
-]
 
 import { defineComponent, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
+import { columnsCompany } from 'src/components/Tables'
 import useApi from 'src/composables/UseApi'
 import useNotify from 'src/composables/UseNotify'
 
@@ -69,6 +68,10 @@ export default defineComponent({
       router.push({ name: 'form-company', params: { id: company.id } })
     }
 
+    const handleDetails = (company) => {
+      router.push({ name: 'details-company', params: { id: company.id } })
+    }
+
     const handleRemoveCompany = async (company) => {
       try {
         $q.dialog({
@@ -91,11 +94,12 @@ export default defineComponent({
     })
 
     return {
-      columns,
+      columnsCompany,
       company,
       loading,
       handleEdit,
-      handleRemoveCompany
+      handleRemoveCompany,
+      handleDetails
     }
   }
 })

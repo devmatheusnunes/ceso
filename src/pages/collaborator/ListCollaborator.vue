@@ -1,21 +1,39 @@
 <template>
   <q-page padding>
     <div class="row">
-      <q-table :rows="collaborator" :columns="columns" row-key="id" class="col-12" :loading="loading">
+      <q-table :rows="collaborator" :columns="columnsCollaborator" row-key="id" class="col-12" :loading="loading">
+
         <template v-slot:top>
           <span class="text-h6">
             Lista de Colaboradores
           </span>
           <q-space />
-          <q-btn label="Adicionar Colaborador" color="blue" :to="{ name: 'form-collaborator' }" />
+          <q-btn label="Adicionar Colaborador" color="primary" :to="{ name: 'form-collaborator' }" />
+        </template>
+
+        <template v-slot:body-cell-img_url="props">
+          <q-td :props="props">
+            <q-avatar v-if="props.row.img_url">
+              <img :src="props.row.img_url" />
+            </q-avatar>
+            <q-avatar v-else color="grey" text-color="white" icon="mdi-image-off" />
+          </q-td>
         </template>
         <template v-slot:body-cell-actions="props">
           <q-td :props="props" class="q-gutter-x-sm">
-            <q-btn icon="mdi-pencil-outline" color="yellow-9" dense size="sm" @click="handleEdit(props.row)">
+
+            <q-btn icon="mdi-eye-outline" color="info" dense size="sm" @click="handleDetails(props.row)">
+              <q-tooltip>
+                Ver Detalhes DetailsCollaborator
+              </q-tooltip>
+            </q-btn>
+
+            <q-btn icon="mdi-pencil-outline" color="warning" dense size="sm" @click="handleEdit(props.row)">
               <q-tooltip>
                 Editar
               </q-tooltip>
             </q-btn>
+
             <q-btn icon="mdi-delete-outline" color="negative" dense size="sm" @click="handleRemoveCollaborator(props.row)">
               <q-tooltip>
                 Deletar
@@ -29,26 +47,10 @@
 </template>
 
 <script>
-const columns = [
-  { name: 'id', align: 'left', label: 'Código', field: 'id', sortable: true },
-  { name: 'name', align: 'left', label: 'Nome', field: 'name', sortable: true },
-  { name: 'cpf', align: 'left', label: 'CPF', field: 'cpf', sortable: true },
-  { name: 'birth', align: 'left', label: 'Nascimento', field: 'birth', sortable: true },
-  { name: 'phone', align: 'left', label: 'Telefone', field: 'phone', sortable: true },
-  { name: 'email', align: 'left', label: 'E-mail', field: 'email', sortable: true },
-  { name: 'bank', align: 'left', label: 'Banco', field: 'bank', sortable: true },
-  { name: 'code_bank', align: 'left', label: 'Código Bancário', field: 'code_bank', sortable: true },
-  { name: 'agency', align: 'left', label: 'Agência', field: 'agency', sortable: true },
-  { name: 'account', align: 'left', label: 'Conta', field: 'account', sortable: true },
-  { name: 'operation', align: 'left', label: 'Operação', field: 'operation', sortable: true },
-  { name: 'pix', align: 'left', label: 'Pix', field: 'pix', sortable: true },
-  { name: 'company_id', align: 'left', label: 'Empresa Registrada', field: 'company_id', sortable: true },
-  { name: 'actions', align: 'right', label: 'Ações', field: 'actions', sortable: true }
-]
-
 import { defineComponent, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
+import { columnsCollaborator } from 'src/components/Tables'
 import useApi from 'src/composables/UseApi'
 import useNotify from 'src/composables/UseNotify'
 
@@ -78,6 +80,10 @@ export default defineComponent({
       router.push({ name: 'form-collaborator', params: { id: collaborator.id } })
     }
 
+    const handleDetails = (collaborator) => {
+      router.push({ name: 'details-collaborator', params: { id: collaborator.id } })
+    }
+
     const handleRemoveCollaborator = async (collaborator) => {
       try {
         $q.dialog({
@@ -100,11 +106,12 @@ export default defineComponent({
     })
 
     return {
-      columns,
+      columnsCollaborator,
       collaborator,
       loading,
       handleEdit,
-      handleRemoveCollaborator
+      handleRemoveCollaborator,
+      handleDetails
     }
   }
 })
