@@ -1,4 +1,3 @@
-// Table Collaborator
 const columnsCollaborator = [
   { name: 'img_url', align: 'left', label: 'Avatar', field: 'img_url', sortable: false },
   { name: 'name', align: 'left', label: 'NOME', field: 'name', sortable: true },
@@ -13,7 +12,14 @@ const columnsCompany = [
   { name: 'actions', align: 'right', label: 'AÇÕES', field: 'actions', sortable: false }
 ]
 
+const columnsStore = [
+  { name: 'name', align: 'left', label: 'LOJA', field: 'name', sortable: true },
+  { name: 'created_at', align: 'left', label: 'CADASTRADO EM', field: 'created_at', sortable: true },
+  { name: 'actions', align: 'right', label: 'AÇÕES', field: 'actions', sortable: false }
+]
+
 export {
   columnsCollaborator,
-  columnsCompany
+  columnsCompany,
+  columnsStore
 }

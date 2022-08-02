@@ -28,8 +28,8 @@ const routes = [
       { path: 'details-company/:id?', name: 'details-company', component: () => import('pages/company/DetailsCompany.vue') },
 
       { path: 'list-store', name: 'list-store', component: () => import('pages/store/ListStore.vue') },
-      // { path: 'form-store/:id?', name: 'form-store', component: () => import('pages/store/FormStore.vue') },
-      // { path: 'details-store/:id?', name: 'details-store', component: () => import('pages/store/DetailsStore.vue') },
+      { path: 'form-store/:id?', name: 'form-store', component: () => import('pages/store/FormStore.vue') },
+      { path: 'details-store/:id?', name: 'details-store', component: () => import('pages/store/DetailsStore.vue') },
 
       { path: 'log', component: () => import('pages/Index.vue') }
     ],
