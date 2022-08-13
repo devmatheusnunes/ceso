@@ -5,13 +5,26 @@
         Formulário de Lojas
       </p>
       <q-form class="q-gutter-y-sm q-pt-md" @submit.prevent="handleSubmit">
-        <p class="text-h6 q-ml-md">Dados Pessoais</p>
+        <p class="text-h6 q-ml-xl">Loja</p>
         <div class="row q-gutter-x-md flex flex-center">
 
           <q-input
             label="Nome:"
             v-model="form.name"
-            style="width: 50%;"
+            style="width: 22.5%;"
+            outlined
+            dense
+          />
+
+          <q-select
+            label="Empresa Registrada:"
+            v-model="form.company_id"
+            :options="optionsCompany"
+            option-value="id"
+            option-label="name"
+            style="width: 22.5%;"
+            map-options
+            emit-value
             outlined
             dense
           />
@@ -20,7 +33,7 @@
             label="Telefone Fixo:"
             v-model="form.telephone"
             mask="(##) #### - ####"
-            style="width: 20%;"
+            style="width: 22%;"
             outlined
             dense
           />
@@ -29,13 +42,13 @@
             label="Telefone Celular:"
             v-model="form.cell"
             mask="(##) # #### - ####"
-            style="width: 20%;"
+            style="width: 22%;"
             outlined
             dense
           />
         </div>
 
-        <p class="text-h6 q-ml-md">Dados Bancários</p>
+        <p class="text-h6 q-ml-xl">Endereço</p>
 
         <div class="row q-gutter-x-md flex flex-center">
           <q-input
@@ -99,16 +112,29 @@
           />
         </div>
 
-        <p class="text-h6 q-ml-md">Dados Bancários</p>
+        <p class="text-h6 q-ml-xl">Colaboradores</p>
 
         <div class="row q-gutter-x-md flex flex-center">
+         <q-select
+            label="Empresa Registrada:"
+            v-model="form.company_id"
+            :options="optionsCompany"
+            option-value="id"
+            option-label="name"
+            style="width: 22.5%;"
+            map-options
+            emit-value
+            outlined
+            dense
+          />
+
           <q-select
             label="Empresa Registrada:"
             v-model="form.company_id"
             :options="optionsCompany"
             option-value="id"
             option-label="name"
-            style="width: 45%;"
+            style="width: 22.5%;"
             map-options
             emit-value
             outlined
@@ -116,13 +142,12 @@
           />
 
           <q-select
-            label="Colaboradores:"
-            v-model="form.collaborator_id"
-            :options="optionsCollaborator"
+            label="Empresa Registrada:"
+            v-model="form.company_id"
+            :options="optionsCompany"
             option-value="id"
             option-label="name"
-            style="width: 45%;"
-            multiple
+            style="width: 22.5%;"
             map-options
             emit-value
             outlined
@@ -130,26 +155,22 @@
           />
         </div>
 
-        <div class="flex flex-center q-pt-md">
+        <div class="q-pa-md" align="right">
           <q-btn
-            :label="isUpdate ? 'Atualizar' : 'Salvar'"
-            color="blue"
-            rounded
-            dense
-            style="width: 40%;"
-            type="submit"
-          />
-        </div>
-
-        <div class="flex flex-center q-pb-sm">
-          <q-btn
+            class="q-mr-sm"
             label="Cancelar"
             color="red"
-            class="col-md-4 col-sm-6 col-xs-10 full"
             rounded
-            dense
-            flat
+            style="width: 10%;"
             :to="{ name: 'list-store' }"
+          />
+          <q-btn
+            :label="isUpdate ? 'Atualizar' : 'Salvar'"
+            class="q-mr-xl"
+            color="blue"
+            rounded
+            style="width: 10%;"
+            type="submit"
           />
         </div>
       </q-form>

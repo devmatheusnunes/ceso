@@ -46,25 +46,23 @@
             :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
           />
         </div>
-        <div class="flex flex-center q-pt-md q-pb-sm">
+
+        <div class="q-pa-md" align="right">
           <q-btn
-            :label="isUpdate ? 'Atualizar' : 'Salvar'"
-            color="blue"
-            rounded
-            dense
-            style="width: 40%;"
-            type="submit"
-          />
-        </div>
-        <div class="flex flex-center q-py-sm">
-          <q-btn
+            class="q-mr-sm"
             label="Cancelar"
             color="red"
-            class="col-md-4 col-sm-6 col-xs-10 full"
             rounded
-            dense
-            flat
+            style="width: 10%;"
             :to="{ name: 'list-company' }"
+          />
+          <q-btn
+            :label="isUpdate ? 'Atualizar' : 'Salvar'"
+            class="q-mr-xl"
+            color="blue"
+            rounded
+            style="width: 10%;"
+            type="submit"
           />
         </div>
       </q-form>

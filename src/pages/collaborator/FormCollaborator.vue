@@ -4,7 +4,7 @@
       <p class="text-h5 flex flex-center q-pt-md">Formulário de Colaboradores</p>
 
       <q-form class="q-gutter-y-sm q-pt-md" @submit.prevent="handleSubmit">
-        <p class="text-h6 q-ml-md">Dados Pessoais</p>
+        <p class="text-h6 q-ml-xl">Dados Pessoais</p>
         <div class="row q-gutter-x-md flex flex-center">
 
           <q-input
@@ -102,7 +102,7 @@
           />
         </div>
 
-        <p class="text-h6 q-ml-md">Dados Bancários</p>
+        <p class="text-h6 q-ml-xl">Dados Bancários</p>
 
         <div class="row q-gutter-x-md flex flex-center">
           <q-input
@@ -172,9 +172,9 @@
           />
         </div>
 
-        <p class="text-h6 q-ml-md">Observações</p>
+        <p class="text-h6 q-ml-xl">Observações</p>
 
-        <div class="row q-gutter-x-md q-pb-md flex flex-center">
+        <div class="row q-mx-md flex flex-center">
           <q-input
             v-model="form.comments"
             type="textarea"
@@ -184,26 +184,22 @@
           />
         </div>
 
-        <div class="flex flex-center q-pt-md">
+        <div class="q-pa-md" align="right">
           <q-btn
-            :label="isUpdate ? 'Atualizar' : 'Salvar'"
-            color="blue"
-            rounded
-            dense
-            style="width: 40%;"
-            type="submit"
-          />
-        </div>
-
-        <div class="flex flex-center q-pb-sm">
-          <q-btn
+            class="q-mr-sm"
             label="Cancelar"
             color="red"
-            class="col-md-4 col-sm-6 col-xs-10 full"
             rounded
-            dense
-            flat
+            style="width: 10%;"
             :to="{ name: 'list-collaborator' }"
+          />
+          <q-btn
+            :label="isUpdate ? 'Atualizar' : 'Salvar'"
+            class="q-mr-xl"
+            color="blue"
+            rounded
+            style="width: 10%;"
+            type="submit"
           />
         </div>
       </q-form>
