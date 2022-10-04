@@ -257,6 +257,9 @@ export default defineComponent({
     const route = useRoute()
     const { post, getById, update, list, uploadImg } = useApi()
     const { notifyError, notifySuccess } = useNotify()
+    const date = new Date()
+
+    const today = date.toLocaleDateString()
 
     const isUpdate = computed(() => route.params.id)
 
@@ -279,7 +282,8 @@ export default defineComponent({
       pis: '',
       company_id: '',
       office_id: '',
-      img_url: ''
+      img_url: '',
+      created_at: today
     })
     const img = ref([])
 

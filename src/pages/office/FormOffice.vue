@@ -55,12 +55,16 @@ export default defineComponent({
     const route = useRoute()
     const { post, getById, update } = useApi()
     const { notifyError, notifySuccess } = useNotify()
+    const date = new Date()
+
+    const today = date.toLocaleDateString()
 
     const isUpdate = computed(() => route.params.id)
 
     let office = {}
     const form = ref({
-      name: ''
+      name: '',
+      created_at: today
     })
 
     onMounted(() => {
