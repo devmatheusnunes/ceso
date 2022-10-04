@@ -58,7 +58,7 @@
             label="Cancelar"
             color="red"
             rounded
-            style="width: 10%;"
+            style="width: 150px;"
             :to="{ name: 'list-company' }"
           />
           <q-btn
@@ -66,7 +66,7 @@
             class="q-mr-xl"
             color="blue"
             rounded
-            style="width: 10%;"
+            style="width: 150px;"
             type="submit"
           />
         </div>
