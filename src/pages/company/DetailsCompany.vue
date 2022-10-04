@@ -1,28 +1,77 @@
 <template>
   <q-page padding>
     <q-card>
-      <p class="text-h5 flex flex-center q-pt-md">Detalhes</p>
+      <p class="text-h5 text-bold q-ml-xl q-pt-md">Detalhes</p>
       <q-card-section>
-        <p>CÓDIGO:</p>
-        <div></div>
-        <p>NOME:</p>
-        <p>CNPJ:</p>
-        <p>INSCRIÇÃO ESTADUAL:</p>
-        <p>CSC:</p>
-        <p>CADASTRADO EM:</p>
-        <p>CADASTRADO POR:</p>
+        <div class="row">
+          <p class="text-bold q-ml-xl">CÓDIGO:</p>
+          <p class="q-pl-md">{{ company.id }}</p>
+        </div>
+        <div class="row">
+          <p class="text-bold q-ml-xl q-pt-sm">NOME:</p>
+          <p class="q-pl-md q-pt-sm">{{ company.name }}</p>
+        </div>
+        <div class="row">
+          <p class="text-bold q-ml-xl q-pt-sm">CNPJ:</p>
+          <p class="q-pl-md q-pt-sm">{{ company.cnpj }}</p>
+        </div>
+        <div class="row">
+          <p class="text-bold q-ml-xl q-pt-sm">INSCRIÇÃO ESTADUAL:</p>
+          <p class="q-pl-md q-pt-sm">{{ company.ie }}</p>
+        </div>
+        <div class="row">
+          <p class="text-bold q-ml-xl q-pt-sm">CSC:</p>
+          <p class="q-pl-md q-pt-sm">{{ company.csc }}</p>
+        </div>
+        <!--
+        <div class="row">
+          <p class="text-bold q-ml-xl q-pt-sm">CADASTRADO EM:</p>
+          <p class="q-pl-md q-pt-sm">{{ company.created_at }}</p>
+        </div>
+        <div class="row">
+          <p class="text-bold q-ml-xl q-pt-sm">CADASTRADO POR:</p>
+          <p class="q-pl-md q-pt-sm">{{ company.user_id }}</p>
+        </div>
+        -->
       </q-card-section>
     </q-card>
   </q-page>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import useApi from 'src/composables/UseApi'
+import { computed, defineComponent, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import useNotify from 'src/composables/UseNotify'
 
 export default defineComponent({
   name: 'PageDetailsCompany',
+
   setup () {
+    const company = ref([])
+    const table = 'company'
+    const route = useRoute()
+    const { notifyError } = useNotify()
+    const { getById } = useApi()
+
+    const isDetails = computed(() => route.params.id)
+
+    onMounted(() => {
+      if (isDetails.value) {
+        handleGetCompany(isDetails.value)
+      }
+    })
+
+    const handleGetCompany = async (id) => {
+      try {
+        company.value = await getById(table, id)
+      } catch (error) {
+        notifyError(error.message)
+      }
+    }
+
     return {
+      company
     }
   }
 })

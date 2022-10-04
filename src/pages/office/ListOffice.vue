@@ -1,13 +1,13 @@
 <template>
   <q-page padding>
     <div class="row">
-      <q-table :rows="store" :columns="columnsStore" row-key="id" class="col-12" :loading="loading">
+      <q-table :rows="office" :columns="columnsOffice" row-key="id" class="col-12" :loading="loading">
         <template v-slot:top>
-          <span class="text-h6">
-            Lista de Lojas
+          <span class="text-h6 text-bold">
+            Lista de Cargos
           </span>
           <q-space />
-          <q-btn label="Adicionar Loja" color="primary" :to="{ name: 'form-store' }" />
+          <q-btn label="Adicionar Cargo" color="primary" :to="{ name: 'form-office' }" />
         </template>
         <template v-slot:body-cell-actions="props">
           <q-td :props="props" class="q-gutter-x-sm">
@@ -21,7 +21,7 @@
                 Editar
               </q-tooltip>
             </q-btn>
-            <q-btn icon="mdi-delete-outline" color="negative" dense size="sm" @click="handleRemoveStore(props.row)">
+            <q-btn icon="mdi-delete-outline" color="negative" dense size="sm" @click="handleRemoveOffice(props.row)">
               <q-tooltip>
                 Deletar
               </q-tooltip>
@@ -38,51 +38,51 @@
 import { defineComponent, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
-import { columnsStore } from 'src/components/Tables'
+import { columnsOffice } from 'src/components/Tables'
 import useApi from 'src/composables/UseApi'
 import useNotify from 'src/composables/UseNotify'
 
 export default defineComponent({
-  name: 'PageListStore',
+  name: 'PageListOffice',
 
   setup () {
-    const store = ref([])
+    const office = ref([])
     const loading = ref(true)
     const router = useRouter()
     const $q = useQuasar()
-    const table = 'store'
+    const table = 'office'
     const { list, remove } = useApi()
     const { notifyError, notifySuccess } = useNotify()
 
-    const handleListStore = async () => {
+    const handleListOffice = async () => {
       try {
         loading.value = true
-        store.value = await list(table)
+        office.value = await list(table)
         loading.value = false
       } catch (error) {
         notifyError(error.message)
       }
     }
 
-    const handleEdit = (store) => {
-      router.push({ name: 'form-store', params: { id: store.id } })
+    const handleEdit = (office) => {
+      router.push({ name: 'form-office', params: { id: office.id } })
     }
 
-    const handleDetails = (store) => {
-      router.push({ name: 'details-store', params: { id: store.id } })
+    const handleDetails = (office) => {
+      router.push({ name: 'details-office', params: { id: office.id } })
     }
 
-    const handleRemoveStore = async (store) => {
+    const handleRemoveOffice = async (office) => {
       try {
         $q.dialog({
-          title: 'Você está deletando uma Empresa',
-          message: `Deseja realmente excluir a empresa ${store.name}?`,
+          title: 'Você está deletando um Cargo',
+          message: `Deseja realmente excluir o cargo ${office.name}?`,
           cancel: true,
           persistent: true
         }).onOk(async () => {
-          await remove(table, store.id)
-          notifySuccess('Empresa excluída com sucesso!')
-          handleListStore()
+          await remove(table, office.id)
+          notifySuccess('Cargo excluído com sucesso!')
+          handleListOffice()
         })
       } catch (error) {
         notifyError(error.message)
@@ -90,15 +90,15 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      handleListStore()
+      handleListOffice()
     })
 
     return {
-      columnsStore,
-      store,
+      columnsOffice,
+      office,
       loading,
       handleEdit,
-      handleRemoveStore,
+      handleRemoveOffice,
       handleDetails
     }
   }

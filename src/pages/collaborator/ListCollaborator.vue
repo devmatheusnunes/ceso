@@ -4,7 +4,7 @@
       <q-table :rows="collaborator" :columns="columnsCollaborator" row-key="id" class="col-12" :loading="loading">
 
         <template v-slot:top>
-          <span class="text-h6">
+          <span class="text-h6 text-bold">
             Lista de Colaboradores
           </span>
           <q-space />

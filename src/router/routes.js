@@ -31,6 +31,10 @@ const routes = [
       { path: 'form-store/:id?', name: 'form-store', component: () => import('pages/store/FormStore.vue') },
       { path: 'details-store/:id?', name: 'details-store', component: () => import('pages/store/DetailsStore.vue') },
 
+      { path: 'list-office', name: 'list-office', component: () => import('pages/office/ListOffice.vue') },
+      { path: 'form-office/:id?', name: 'form-office', component: () => import('pages/office/FormOffice.vue') },
+      { path: 'details-office/:id?', name: 'details-office', component: () => import('pages/office/DetailsOffice.vue') },
+
       { path: 'log', component: () => import('pages/Index.vue') }
     ],
     meta: {

@@ -18,8 +18,15 @@ const columnsStore = [
   { name: 'actions', align: 'right', label: 'AÇÕES', field: 'actions', sortable: false }
 ]
 
+const columnsOffice = [
+  { name: 'name', align: 'left', label: 'CARGO', field: 'name', sortable: true },
+  { name: 'created_at', align: 'left', label: 'CADASTRADO EM', field: 'created_at', sortable: true },
+  { name: 'actions', align: 'right', label: 'AÇÕES', field: 'actions', sortable: false }
+]
+
 export {
   columnsCollaborator,
   columnsCompany,
-  columnsStore
+  columnsStore,
+  columnsOffice
 }

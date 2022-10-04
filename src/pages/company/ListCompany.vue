@@ -3,7 +3,7 @@
     <div class="row">
       <q-table :rows="company" :columns="columnsCompany" row-key="id" class="col-12" :loading="loading">
         <template v-slot:top>
-          <span class="text-h6">
+          <span class="text-h6 text-bold">
             Lista de Empresas
           </span>
           <q-space />

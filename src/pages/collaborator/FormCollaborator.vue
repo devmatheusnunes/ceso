@@ -1,184 +1,219 @@
 <template>
   <q-page padding>
     <q-card class="q-mt-md">
-      <p class="text-h5 flex flex-center q-pt-md">Formulário de Colaboradores</p>
+      <p class="text-h5 text-bold q-ml-xl q-pt-md">Formulário de Colaboradores</p>
 
       <q-form class="q-gutter-y-sm q-pt-md" @submit.prevent="handleSubmit">
-        <p class="text-h6 q-ml-xl">Dados Pessoais</p>
-        <div class="row q-gutter-x-md flex flex-center">
 
-          <q-input
-            label="Nome:"
-            v-model="form.name"
-            style="width: 50%;"
-            outlined
-            dense
-            lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
-          />
+        <div class="row">
+            <div class="q-ml-xl">
+              <p class="text-bold" style="margin-bottom:0">FOTO:</p>
+              <q-card bordered style="max-width: 250px; min-height: 280px;">
+                <q-input v-model="img" type="file"
+                dense accept="image/*"/>
+                <q-img :src="img[0]" width="100" height="100"/>
+              </q-card>
+            </div>
 
-          <q-input
-            label="CPF:"
-            v-model="form.cpf"
-            mask="###.###.###-##"
-            style="width: 20%;"
-            outlined
-            dense
-            lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
-          />
+            <div>
+              <div class="q-ml-xl">
+                <p class="text-bold" style="margin-bottom:0">NOME:</p>
+                <q-input
+                  v-model="form.name"
+                  style="width: 350px;"
+                  outlined
+                  dense
+                  lazy-rules
+                  :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
+                />
+              </div>
 
-          <q-input
-            label="PIS:"
-            v-model="form.pis"
-            mask="###.#####.##-#"
-            style="width: 20%;"
-            outlined
-            dense
-            lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
-          />
+              <div class="q-ml-xl">
+                <p class="text-bold" style="margin-bottom:0">CPF:</p>
+                <q-input
+                  v-model="form.cpf"
+                  mask="###.###.###-##"
+                  style="width: 350px;"
+                  outlined
+                  dense
+                  lazy-rules
+                  :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
+                />
+              </div>
+
+              <div class="q-ml-xl">
+                <p class="text-bold" style="margin-bottom:0">PIS:</p>
+                <q-input
+                  v-model="form.pis"
+                  mask="###.#####.##-#"
+                  style="width: 350px;"
+                  outlined
+                  dense
+                  lazy-rules
+                  :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
+                />
+              </div>
+
+              <div class="q-ml-xl">
+                <p class="text-bold" style="margin-bottom:0">DATA DE NASCIMENTO:</p>
+                <q-input
+                  v-model="form.birth"
+                  mask="##/##/####"
+                  style="width: 350px;"
+                  outlined
+                  dense
+                  lazy-rules
+                  :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
+                />
+              </div>
+          </div>
+          <div>
+            <div class="q-ml-xl">
+                <p class="text-bold" style="margin-bottom:0">TELEFONE:</p>
+                <q-input
+                  v-model="form.phone"
+                  mask="(##) # #### - ####"
+                  style="width: 350px;"
+                  outlined
+                  dense
+                  lazy-rules
+                  rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
+                />
+            </div>
+
+            <div class="q-ml-xl">
+                <p class="text-bold" style="margin-bottom:0">E-MAIL:</p>
+                <q-input
+                  v-model="form.email"
+                  type="email"
+                  style="width: 350px;"
+                  outlined
+                  dense
+                  lazy-rules
+                  :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
+                />
+            </div>
+
+            <div class="q-ml-xl">
+                <p class="text-bold" style="margin-bottom:0">EMPRESA REGISTRADA:</p>
+                <q-select
+                  v-model="form.company_id"
+                  :options="optionsCompany"
+                  option-value="id"
+                  option-label="name"
+                  map-options
+                  emit-value
+                  style="width: 350px;"
+                  outlined
+                  dense
+                  lazy-rules
+                />
+            </div>
+
+            <div class="q-ml-xl q-mt-md">
+                <p class="text-bold" style="margin-bottom:0">CARGO:</p>
+                <q-select
+                  v-model="form.office_id"
+                  :options="optionsOffice"
+                  option-value="id"
+                  option-label="name"
+                  map-options
+                  emit-value
+                  style="width: 350px;"
+                  outlined
+                  dense
+                  lazy-rules
+                />
+            </div>
+          </div>
         </div>
 
-        <div class="row q-gutter-x-md flex flex-center">
-          <q-input
-            label="Data de Nascimento:"
-            v-model="form.birth"
-            mask="##/##/####"
-            style="width: 30%;"
-            outlined
-            dense
-            lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
-          />
-
-          <q-input
-            label="Telefone:"
-            v-model="form.phone"
-            mask="(##) # #### - ####"
-            style="width: 30%;"
-            outlined
-            dense
-            lazy-rules
-            rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
-          />
-
-          <q-input
-            label="E-Mail:"
-            v-model="form.email"
-            type="email"
-            style="width: 30%;"
-            outlined
-            dense
-            lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
-          />
-        </div>
-
-        <div class="row q-gutter-x-md flex flex-center">
-          <q-select
-            label="Empresa Registrada:"
-            v-model="form.company_id"
-            :options="optionsCompany"
-            option-value="id"
-            option-label="name"
-            map-options
-            emit-value
-            style="width: 40%;"
-            outlined
-            dense
-            lazy-rules
-          />
-
-          <q-input
-            label="Imagem"
-            v-model="img"
-            stack-label
-            type="file"
-            accept="image/*"
-            style="width: 40%;"
-            outlined
-            dense
-          />
-        </div>
-
-        <p class="text-h6 q-ml-xl">Dados Bancários</p>
-
-        <div class="row q-gutter-x-md flex flex-center">
-          <q-input
-            label="Banco:"
-            v-model="form.bank"
-            style="width: 30%;"
-            outlined
-            dense
-            lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
-          />
-
-          <q-input
-            label="Código do Banco:"
-            v-model="form.code_bank"
-            mask="###"
-            style="width: 30%;"
-            outlined
-            dense
-            lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
-          />
-
-          <q-input
-            label="Agência:"
-            v-model="form.agency"
-            mask="#####"
-            style="width: 30%;"
-            outlined
-            dense
-            lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
+        <div class="row">
+          <div class="q-ml-xl q-mt-md">
+            <p class="text-bold" style="margin-bottom:0">CÓDIGO DO BANCO:</p>
+            <q-input
+              v-model="form.code_bank"
+              mask="###"
+              style="width: 250px;"
+              outlined
+              dense
+              lazy-rules
+              :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
             />
+          </div>
+
+          <div class="q-ml-xl q-mt-md">
+            <p class="text-bold" style="margin-bottom:0">AGÊNCIA:</p>
+            <q-input
+              v-model="form.agency"
+              mask="#####"
+              style="width: 350px;"
+              outlined
+              dense
+              lazy-rules
+              :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
+            />
+          </div>
+
+          <div class="q-ml-xl q-mt-md">
+            <p class="text-bold" style="margin-bottom:0">BANCO:</p>
+            <q-input
+              v-model="form.bank"
+              style="width: 350px;"
+              outlined
+              dense
+              lazy-rules
+              :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
+            />
+          </div>
         </div>
 
-        <div class="row q-gutter-x-md flex flex-center">
-          <q-input
-            label="Operação:"
-            v-model="form.operation"
-            mask="###"
-            style="width: 30%;"
-            outlined
-            dense
-            lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
-          />
+        <div class="row">
+          <div class="q-ml-xl q-mt-md">
+            <p class="text-bold" style="margin-bottom:0">OPERAÇÃO:</p>
+            <q-input
+              v-model="form.operation"
+              mask="###"
+              style="width: 250px;"
+              outlined
+              dense
+              lazy-rules
+              :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
+            />
+          </div>
 
-          <q-input
-            label="Conta:"
-            v-model="form.account"
-            mask="#######-#"
-            style="width: 30%;"
-            outlined
-            dense
-            lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
-          />
+          <div class="q-ml-xl q-mt-md">
+            <p class="text-bold" style="margin-bottom:0">CONTA:</p>
+            <q-input
+              v-model="form.account"
+              mask="#######-#"
+              style="width: 350px;"
+              outlined
+              dense
+              lazy-rules
+              :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
+            />
+          </div>
 
-          <q-input
-            label="Pix:"
-            v-model="form.pix"
-            style="width: 30%;"
-            outlined
-            dense
-            lazy-rules
-            :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
-          />
+          <div class="q-ml-xl q-mt-md">
+            <p class="text-bold" style="margin-bottom:0">PIX:</p>
+            <q-input
+              v-model="form.pix"
+              style="width: 350px;"
+              outlined
+              dense
+              lazy-rules
+              :rules="[val => (val && val.length > 0) || 'Este campo não pode ficar em branco']"
+            />
+          </div>
         </div>
 
-        <p class="text-h6 q-ml-xl">Observações</p>
-
-        <div class="row q-mx-md flex flex-center">
+        <div class="q-ml-xl q-mt-md">
+          <p class="text-bold"  style="margin-bottom:0">OBSERVAÇÕES:</p>
           <q-input
             v-model="form.comments"
             type="textarea"
-            style="width: 95%;"
+            style="max-width: 1050px;"
             outlined
             dense
           />
@@ -227,6 +262,7 @@ export default defineComponent({
 
     let collaborator = {}
     const optionsCompany = ref([])
+    const optionsOffice = ref([])
     const form = ref({
       name: '',
       cpf: '',
@@ -242,19 +278,21 @@ export default defineComponent({
       comments: '',
       pis: '',
       company_id: '',
+      office_id: '',
       img_url: ''
     })
     const img = ref([])
 
     onMounted(() => {
-      handleListCompany()
+      handleListOptions()
       if (isUpdate.value) {
         handleGetCollaborator(isUpdate.value)
       }
     })
 
-    const handleListCompany = async () => {
+    const handleListOptions = async () => {
       optionsCompany.value = await list('company')
+      optionsOffice.value = await list('office')
     }
 
     const handleSubmit = async () => {
@@ -290,6 +328,7 @@ export default defineComponent({
       handleSubmit,
       isUpdate,
       optionsCompany,
+      optionsOffice,
       img
     }
   }

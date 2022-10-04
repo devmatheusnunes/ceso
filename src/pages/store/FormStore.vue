@@ -1,153 +1,231 @@
 <template>
   <q-page padding>
     <q-card class="q-mt-md">
-      <p class="text-h5 flex flex-center q-pt-md">
+      <p class="text-h5 text-bold q-ml-xl q-pt-md">
         Formulário de Lojas
       </p>
+
+      <p class="text-h6 text-bold q-ml-xl q-pt-md">
+        Loja
+      </p>
+
       <q-form class="q-gutter-y-sm q-pt-md" @submit.prevent="handleSubmit">
-        <p class="text-h6 q-ml-xl">Loja</p>
-        <div class="row q-gutter-x-md flex flex-center">
+        <div class="row">
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">NOME:</p>
+            <q-input
+              v-model="form.name"
+              style="width: 500px;"
+              outlined
+              dense
+            />
+          </div>
 
-          <q-input
-            label="Nome:"
-            v-model="form.name"
-            style="width: 22.5%;"
-            outlined
-            dense
-          />
-
-          <q-select
-            label="Empresa Registrada:"
-            v-model="form.company_id"
-            :options="optionsCompany"
-            option-value="id"
-            option-label="name"
-            style="width: 22.5%;"
-            map-options
-            emit-value
-            outlined
-            dense
-          />
-
-          <q-input
-            label="Telefone Fixo:"
-            v-model="form.telephone"
-            mask="(##) #### - ####"
-            style="width: 22%;"
-            outlined
-            dense
-          />
-
-          <q-input
-            label="Telefone Celular:"
-            v-model="form.cell"
-            mask="(##) # #### - ####"
-            style="width: 22%;"
-            outlined
-            dense
-          />
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">TELEFONE FIXO:</p>
+            <q-input
+              v-model="form.telephone"
+              mask="(##) #### - ####"
+              style="width: 350px;"
+              outlined
+              dense
+            />
+          </div>
         </div>
 
-        <p class="text-h6 q-ml-xl">Endereço</p>
+        <div class="row">
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">EMPRESA REGISTRADA:</p>
+            <q-select
+              label="Selecione uma Empresa"
+              v-model="form.company_id"
+              :options="optionsCompany"
+              option-value="id"
+              option-label="name"
+              style="width: 500px;"
+              map-options
+              emit-value
+              outlined
+              dense
+            />
+          </div>
 
-        <div class="row q-gutter-x-md flex flex-center">
-          <q-input
-            label="Rua:"
-            v-model="form.street"
-            style="width: 50%;"
-            outlined
-            dense
-          />
-
-          <q-input
-            label="Nº:"
-            v-model="form.number"
-            mask="####"
-            style="width: 10%;"
-            outlined
-            dense
-          />
-
-          <q-input
-            label="Bairro:"
-            v-model="form.district"
-            style="width: 30%;"
-            outlined
-            dense
-          />
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">CELULAR:</p>
+            <q-input
+              v-model="form.cell"
+              mask="(##) # #### - ####"
+              style="width: 350px;"
+              outlined
+              dense
+            />
+          </div>
         </div>
 
-        <div class="row q-gutter-x-md flex flex-center">
-          <q-input
-            label="Cidade:"
-            v-model="form.city"
-            style="width: 22%;"
-            outlined
-            dense
-          />
+        <p class="text-h6 text-bold q-ml-xl q-pt-md">
+          Endereço
+        </p>
 
-          <q-input
-            label="CEP:"
-            v-model="form.cep"
-            mask="#####-###"
-            style="width: 22%;"
-            outlined
-            dense
-          />
+        <div class="row">
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">RUA:</p>
+            <q-input
+              v-model="form.street"
+              style="width: 350px;"
+              outlined
+              dense
+            />
+          </div>
 
-          <q-input
-            label="Estado:"
-            v-model="form.state"
-            style="width: 22%;"
-            outlined
-            dense
-          />
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">NÚMERO:</p>
+            <q-input
+              v-model="form.number"
+              mask="####"
+              style="width: 100px;"
+              outlined
+              dense
+            />
+          </div>
 
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">BAIRRO:</p>
+            <q-input
+              v-model="form.district"
+              style="width: 350px;"
+              outlined
+              dense
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">CIDADE:</p>
+            <q-input
+              label="Cidade:"
+              v-model="form.city"
+              style="width: 350px;"
+              outlined
+              dense
+            />
+          </div>
+
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">CEP:</p>
+            <q-input
+              v-model="form.cep"
+              mask="#####-###"
+              style="width: 100px;"
+              outlined
+              dense
+            />
+          </div>
+
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">ESTADO:</p>
+            <q-input
+              label="Estado:"
+              v-model="form.state"
+              style="width: 350px;"
+              outlined
+              dense
+            />
+          </div>
+        </div>
+
+        <div class="q-ml-xl" style="max-width: 50%;">
+          <p class="text-bold" style="margin-bottom:0">PAÍS:</p>
           <q-input
             label="País:"
             v-model="form.country"
-            style="width: 22.5%;"
+            style="width: 350px;"
             outlined
             dense
           />
         </div>
 
-        <p class="text-h6 q-ml-xl">Colaboradores</p>
+        <p class="text-h6 text-bold q-ml-xl q-pt-md">
+          Colaboradores
+        </p>
 
-        <div class="row q-gutter-x-md flex flex-center">
-         <q-select
-            label="Empresa Registrada:"
-            v-model="form.company_id"
-            :options="optionsCompany"
-            option-value="id"
-            option-label="name"
-            style="width: 22.5%;"
-            map-options
-            emit-value
-            outlined
-            dense
-          />
+        <div class="row">
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">GERENTE GERAL:</p>
+            <q-select
+              label="Selecione um Gerente Geral"
+              v-model="form.manager_master_id"
+              :options="optionsCollaborator"
+              option-value="id"
+              option-label="name"
+              style="width: 350px;"
+              map-options
+              emit-value
+              outlined
+              dense
+            />
+          </div>
 
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">GERENTE DA LOJA:</p>
+            <q-select
+              label="Selecione um Gerente da Loja:"
+              v-model="form.manager_id"
+              :options="optionsCollaborator"
+              option-value="id"
+              option-label="name"
+              style="width: 350px;"
+              map-options
+              emit-value
+              outlined
+              dense
+            />
+          </div>
+        </div>
+
+        <div class="row q-mt-lg">
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">VENDEDOR(A):</p>
+            <q-select
+              label="Selecione um vendedor(a):"
+              v-model="form.seller1_id"
+              :options="optionsCollaborator"
+              option-value="id"
+              option-label="name"
+              style="width: 350px;"
+              map-options
+              emit-value
+              outlined
+              dense
+            />
+          </div>
+
+          <div class="q-ml-xl" style="max-width: 50%;">
+            <p class="text-bold" style="margin-bottom:0">VENDEDOR(A):</p>
+            <q-select
+              label="Selecione um vendedor(a):"
+              v-model="form.seller2_id"
+              :options="optionsCollaborator"
+              option-value="id"
+              option-label="name"
+              style="width: 350px;"
+              map-options
+              emit-value
+              outlined
+              dense
+            />
+          </div>
+        </div>
+
+        <div class="q-ml-xl" style="max-width: 50%;">
+          <p class="text-bold" style="margin-bottom:0">VENDEDOR(A):</p>
           <q-select
-            label="Empresa Registrada:"
-            v-model="form.company_id"
-            :options="optionsCompany"
+            label="Selecione um vendedor(a):"
+            v-model="form.seller3_id"
+            :options="optionsCollaborator"
             option-value="id"
             option-label="name"
-            style="width: 22.5%;"
-            map-options
-            emit-value
-            outlined
-            dense
-          />
-
-          <q-select
-            label="Empresa Registrada:"
-            v-model="form.company_id"
-            :options="optionsCompany"
-            option-value="id"
-            option-label="name"
-            style="width: 22.5%;"
+            style="width: 350px;"
             map-options
             emit-value
             outlined
@@ -161,7 +239,7 @@
             label="Cancelar"
             color="red"
             rounded
-            style="width: 10%;"
+            style="width: 150px;"
             :to="{ name: 'list-store' }"
           />
           <q-btn
@@ -169,7 +247,7 @@
             class="q-mr-xl"
             color="blue"
             rounded
-            style="width: 10%;"
+            style="width: 150px;"
             type="submit"
           />
         </div>
@@ -211,7 +289,11 @@ export default defineComponent({
       state: '',
       country: '',
       company_id: '',
-      collaborator_id: []
+      manager_id: '',
+      manager_master_id: '',
+      seller1_id: '',
+      seller2_id: '',
+      seller3_id: ''
     })
 
     onMounted(() => {

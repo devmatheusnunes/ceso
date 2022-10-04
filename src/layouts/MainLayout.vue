@@ -66,6 +66,12 @@ const linksList = [
 
   },
   {
+    title: 'Cargos',
+    caption: '',
+    icon: 'mdi-briefcase-outline',
+    routeName: 'list-office'
+  },
+  {
     title: 'Colaboradores',
     caption: '',
     icon: 'mdi-badge-account-outline',
