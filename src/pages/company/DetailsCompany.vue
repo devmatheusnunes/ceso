@@ -23,11 +23,11 @@
           <p class="text-bold q-ml-xl q-pt-sm">CSC:</p>
           <p class="q-pl-md q-pt-sm">{{ company.csc }}</p>
         </div>
-        <!--
         <div class="row">
           <p class="text-bold q-ml-xl q-pt-sm">CADASTRADO EM:</p>
           <p class="q-pl-md q-pt-sm">{{ company.created_at }}</p>
         </div>
+        <!--
         <div class="row">
           <p class="text-bold q-ml-xl q-pt-sm">CADASTRADO POR:</p>
           <p class="q-pl-md q-pt-sm">{{ company.user_id }}</p>
